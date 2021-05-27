@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <boss xsi:type="ManagerElement" name="john" desc="boss" />
+  <departBoss name="manager" />
+  <users>
+    <user name="el1" />
+    <user name="el2" />
+    <user name="el3" />
+    <manager name="el4" desc="this element is extend from commonElement" />
+  </users>
+</config>

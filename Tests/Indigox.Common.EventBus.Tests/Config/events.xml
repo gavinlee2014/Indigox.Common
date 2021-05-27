@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <source type="Indigox.Common.EventBus.Test.Configuration.TestObject, Indigox.Common.EventBus.Tests">
+    <event type="Indigox.Common.EventBus.Test.Configuration.TestStartEvent, Indigox.Common.EventBus.Tests">
+      <listener method="OnStart" type="Indigox.Common.EventBus.Test.Configuration.TestListener, Indigox.Common.EventBus.Tests" />
+    </event>
+  </source>
+</config>

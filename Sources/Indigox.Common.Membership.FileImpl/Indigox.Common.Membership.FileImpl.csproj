@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D97F7742-5020-4C16-A26C-6664E6D8EB20}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Indigox.Common.Membership.FileImpl</RootNamespace>
+    <AssemblyName>Indigox.Common.Membership.FileImpl</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caches\CsvFileReader.cs" />
+    <Compile Include="Caches\MembersCache.cs" />
+    <Compile Include="Caches\ReportingHierarchyCache.cs" />
+    <Compile Include="PrincipalProvider.cs" />
+    <Compile Include="UserProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GroupProvider.cs" />
+    <Compile Include="OrganizationalUnitProvider.cs" />
+    <Compile Include="ProviderFactory.cs" />
+    <Compile Include="RoleProvider.cs" />
+    <Compile Include="ReportingHierarchyProvider.cs" />
+    <Compile Include="OrganizationalRoleProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Indigox.Common.DomainModels\Indigox.Common.DomainModels.csproj">
+      <Project>{F262D09E-3C61-48F3-96C9-A9E8F6EFDA4E}</Project>
+      <Name>Indigox.Common.DomainModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Indigox.Common.Logging\Indigox.Common.Logging.csproj">
+      <Project>{95B98740-D8CD-4785-BECC-2BA0DE2D0600}</Project>
+      <Name>Indigox.Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Indigox.Common.Membership\Indigox.Common.Membership.csproj">
+      <Project>{19F32F63-7A14-431C-9A3D-AE5AF81B3B1F}</Project>
+      <Name>Indigox.Common.Membership</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\bcp_export.cmd" />
+    <None Include="Data\member.csv" />
+    <None Include="Data\membership.csv" />
+    <None Include="Data\reportinghierarchyusers.csv" />
+  </ItemGroup>
+  <Import Project="..\..\Build\configurations.proj" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\Build\webapp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

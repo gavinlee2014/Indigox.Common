@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ivy-module version="2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+  <info organisation="indigox" module="common" />
+  <configurations>
+    <conf name="compile" visibility="private" />
+    <conf name="test" visibility="private" extends="compile" />
+    <conf name="default" visibility="public" extends="compile" />
+  </configurations>
+  <publications>
+    <artifact name="indigox.common.configuration" type="dll" ext="dll" />
+    <artifact name="indigox.common.database" type="dll" ext="dll" />
+    <artifact name="indigox.common.domainmodels" type="dll" ext="dll" />
+    <artifact name="indigox.common.domainmodels.repository.nhibernateimpl" type="dll" ext="dll" />
+    <artifact name="indigox.common.eventbus" type="dll" ext="dll" />
+    <artifact name="indigox.common.expression" type="dll" ext="dll" />
+    <artifact name="indigox.common.logging" type="dll" ext="dll" />
+    <artifact name="indigox.common.membership" type="dll" ext="dll" />
+    <artifact name="indigox.common.membership.activedirectoryimpl" type="dll" ext="dll" />
+    <artifact name="indigox.common.membership.fileimpl" type="dll" ext="dll" />
+    <artifact name="indigox.common.membership.nhibernateimpl" type="dll" ext="dll" />
+    <artifact name="indigox.common.membership.sqlimpl" type="dll" ext="dll" />
+    <artifact name="indigox.common.message" type="dll" ext="dll" />
+    <artifact name="indigox.common.nhibernatefactories" type="dll" ext="dll" />
+    <artifact name="indigox.common.nhibernate.extension" type="dll" ext="dll" />
+    <artifact name="indigox.common.serialization" type="dll" ext="dll" />
+    <artifact name="indigox.common.statecontainer" type="dll" ext="dll" />
+    <artifact name="indigox.common.statistics" type="dll" ext="dll" />
+    <artifact name="indigox.common.utilities" type="dll" ext="dll" />
+    <artifact name="indigox.common.adaccessor" type="dll" ext="dll" />
+    <artifact name="indigox.common.exchangemanager" type="dll" ext="dll" />
+    <artifact name="indigox.common.testutilities" type="dll" ext="dll" />
+  </publications>
+  <dependencies>
+    <dependency org="MvpXml" name="XInclude.NET" rev="1.2" />
+    <dependency org="microsoft" name="powershell" rev="6.1.7600.16385" />
+    <dependency org="org.apache.logging" name="log4net" rev="1.2.10" />
+    <dependency org="org.nhforge" name="NHibernate" rev="3.3.0.4000" />
+    <dependency org="Newtonsoft.Json" name="Json.NET20" rev="3.5-release8" />
+    <dependency org="org.nunit" name="NUnit.Framework" rev="2.6.0.12051" conf="test->*" />
+  </dependencies>
+</ivy-module>

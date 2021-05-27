@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F262D09E-3C61-48F3-96C9-A9E8F6EFDA4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Indigox.Common.DomainModels</RootNamespace>
+    <AssemblyName>Indigox.Common.DomainModels</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Generator\DBIdGenertatorConfigurations.cs" />
+    <Compile Include="Configuration\Generator\DBIdGenertatorConfigurator.cs" />
+    <Compile Include="Configuration\Generator\DBIdGenertatorElement.cs" />
+    <Compile Include="Configuration\Generator\DBIdGenertatorSection.cs" />
+    <Compile Include="Configuration\InstanceMapConfigurator.cs" />
+    <Compile Include="Configuration\InstanceMapElement.cs" />
+    <Compile Include="Configuration\InstanceMapSection.cs" />
+    <Compile Include="Events\DomainObjectCreateEvent.cs" />
+    <Compile Include="Events\RepositoryAddedEvent.cs" />
+    <Compile Include="Events\RepositoryAddEvent.cs" />
+    <Compile Include="Events\RepositoryDeletedEvent.cs" />
+    <Compile Include="Events\RepositoryDeleteEvent.cs" />
+    <Compile Include="Events\RepositoryUpdatedEvent.cs" />
+    <Compile Include="Events\RepositoryUpdateEvent.cs" />
+    <Compile Include="Factory\IdGeneratorFactory.cs" />
+    <Compile Include="Factory\RepositoryFactory.cs" />
+    <Compile Include="Generator\DbIdGenerator.cs" />
+    <Compile Include="Generator\DefaultIdGenerator.cs" />
+    <Compile Include="Identity\ObjectIdentity.cs" />
+    <Compile Include="Identity\ObjectIdentityStrategy.cs" />
+    <Compile Include="Initialization\DBIdGenertatorWarmUp.cs" />
+    <Compile Include="Initialization\Initializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface\Entity\IEntity.cs" />
+    <Compile Include="Interface\Factory\IFactory.cs" />
+    <Compile Include="Interface\Generator\IIdGenerator.cs" />
+    <Compile Include="Interface\Identity\IKey.cs" />
+    <Compile Include="Interface\Identity\IObjectIdentityStrategy.cs" />
+    <Compile Include="Interface\Identity\IObjectIdentity.cs" />
+    <Compile Include="Interface\Repository\IGenericRepository.cs" />
+    <Compile Include="Interface\Repository\IRepository.cs" />
+    <Compile Include="Interface\Specifications\ISpecification.cs" />
+    <Compile Include="Interface\Specifications\SpecificationType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\OrderBy.cs" />
+    <Compile Include="Queries\Query.cs" />
+    <Compile Include="Repository\BasicRepository.cs" />
+    <Compile Include="Repository\BasicRepositoryCache.cs" />
+    <Compile Include="Repository\DomainObjectAttribute.cs" />
+    <Compile Include="Repository\InstanceTypeMapping.cs" />
+    <Compile Include="Specifications\AllSpecification.cs" />
+    <Compile Include="Specifications\AndSpecification.cs" />
+    <Compile Include="Specifications\ContainsAnySpecification.cs" />
+    <Compile Include="Specifications\ContainsSpecification.cs" />
+    <Compile Include="Specifications\EqualSpecification.cs" />
+    <Compile Include="Specifications\GreaterOrEqualSpecification.cs" />
+    <Compile Include="Specifications\GreaterThanSpecification.cs" />
+    <Compile Include="Specifications\InSpecification.cs" />
+    <Compile Include="Specifications\LessOrEqualSpecification.cs" />
+    <Compile Include="Specifications\LessThanSpecification.cs" />
+    <Compile Include="Specifications\LikeSpecification.cs" />
+    <Compile Include="Specifications\LogicSpecification.cs" />
+    <Compile Include="Specifications\NotEqualSpecification.cs" />
+    <Compile Include="Specifications\NotSpecification.cs" />
+    <Compile Include="Specifications\OrSpecification.cs" />
+    <Compile Include="Specifications\PropertySpecification.cs" />
+    <Compile Include="Specifications\RelationalSpecification.cs" />
+    <Compile Include="Specifications\Specification.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Indigox.Common.Configuration\Indigox.Common.Configuration.csproj">
+      <Project>{ED65FE80-F351-4CFA-99FB-CA52A4C2E15F}</Project>
+      <Name>Indigox.Common.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Indigox.Common.Database\Indigox.Common.Database.csproj">
+      <Project>{B8D9DD96-AD5D-4126-9319-3BF866A53079}</Project>
+      <Name>Indigox.Common.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Indigox.Common.EventBus\Indigox.Common.EventBus.csproj">
+      <Project>{6E07097E-2F76-437E-A8F9-356ACBCC46EA}</Project>
+      <Name>Indigox.Common.EventBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Indigox.Common.Logging\Indigox.Common.Logging.csproj">
+      <Project>{95B98740-D8CD-4785-BECC-2BA0DE2D0600}</Project>
+      <Name>Indigox.Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Indigox.Common.Utilities\Indigox.Common.Utilities.csproj">
+      <Project>{67643708-C649-4A9C-B360-F3B9F005FA15}</Project>
+      <Name>Indigox.Common.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\..\Build\configurations.proj" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\Build\webapp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="Indigox.Common.Membership"
+                   assembly="Indigox.Common.Membership"
+                   default-access="field.camelcase"
+                   default-lazy="false">
+
+  <class name="Principal" table="Member" abstract="true">
+    <cache usage="read-only" />
+    <id name="ID" access="field.lowercase">
+      <column name="ID" sql-type="char(12)" length="12" />
+    </id>
+    <discriminator type="string">
+      <column name="Type" sql-type="varchar(50)" length="50" />
+    </discriminator>
+    <property name="Name" type="string">
+      <column name="Name" sql-type="nvarchar(255)" length="255" />
+    </property>
+    <property name="FullName" type="string">
+      <column name="FullName" sql-type="nvarchar(1000)" length="1000" />
+    </property>
+    <property name="Email" type="string">
+      <column name="Email" sql-type="varchar(500)" length="500" />
+    </property>
+    <property name="MailDatabase" type="string">
+      <column name="MailDatabase" sql-type="varchar(500)" length="500" />
+    </property>
+    <property name="Enabled" type="bool">
+      <column name="IsEnabled" sql-type="bit" />
+    </property>
+    <property name="Deleted" type="bool">
+      <column name="IsDeleted" sql-type="bit" />
+    </property>
+    <map name="ExtendProperties" table="ExtendProperties">
+      <key column="ID"></key>
+      <index column="PropertyName" type="string"  sql-type="varchar(500)" length="500" />
+      <element column="PropertyValue" type="string"  sql-type="varchar(500)" length="500" />
+    </map>
+    <!-- TODO: solve lazy problem -->
+    <bag name="MemberOf" table="Membership" cascade="none" lazy="false">
+      <cache usage="read-only" />
+      <key>
+        <column name="Child" sql-type="char(12)" length="12" />
+      </key>
+      <many-to-many class="Container">
+        <column name="Parent" sql-type="char(12)" length="12" />
+      </many-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

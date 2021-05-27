@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Indigox.Common.DomainModels.Test"
+                   namespace="Indigox.Common.DomainModels.Test.Repository.NHibernateImpl">
+
+  <class name="Street" table="Street" lazy="false">
+
+    <id name="GUID" column="StreetID" type="Guid" unsaved-value="undefined" access="field.lowercase" >
+      <generator class="assigned" />
+    </id>
+    <property name="Name" type="string" access="field.camelcase">
+      <column name="Name" length="4000"/>
+    </property>
+    <bag name="AssignTo" inverse="false" cascade="all" lazy="false" access="field.camelcase"
+         table="StreetAssignmentMap" >
+      <key column="StreetID" not-null="true"/>
+      <many-to-many class="DustMan" column="DustManID" />
+    </bag>
+  </class>
+</hibernate-mapping>

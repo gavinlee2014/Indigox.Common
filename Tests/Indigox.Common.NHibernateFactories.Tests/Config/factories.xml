@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <factory assemblyName="Indigox.BPM.ObjectModel" path="Config\bpm.nhb.cfg.xml" connectionString="BPM" autoBind="true" />
+</config>

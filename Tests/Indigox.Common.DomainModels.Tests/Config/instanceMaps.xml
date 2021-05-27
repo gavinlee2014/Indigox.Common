@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <instanceMap interface="Indigox.BPM.ObjectModel.Interface.IInstance,Indigox.BPM.ObjectModel" instance="Indigox.BPM.ObjectModel.Instances.Instance, Indigox.BPM.ObjectModel" >      
+    </instanceMap>
+    <instanceMap interface="Indigox.BPM.ObjectModel.Interface.Category.IProcessCategory,Indigox.BPM.ObjectModel" instance="Indigox.BPM.ObjectModel.Category.AbstractProcessCategory,Indigox.BPM.ObjectModel" >
+    </instanceMap>
+    <instanceMap interface="Indigox.BPM.ObjectModel.Interface.IWorkItem,Indigox.BPM.ObjectModel" instance="Indigox.BPM.ObjectModel.Runtime.WorkItem,Indigox.BPM.ObjectModel" >
+    </instanceMap>
+    <instanceMap interface="Indigox.BPM.ObjectModel.Interface.Agency.IProcessAgency,Indigox.BPM.ObjectModel" instance="Indigox.BPM.ObjectModel.Agency.ProcessAgency,Indigox.BPM.ObjectModel" >
+    </instanceMap>
+    <instanceMap interface="Indigox.CMS.Security.Interfaces.IAcl,Indigox.CMS.Security" instance="Indigox.CMS.Security.Acl,Indigox.CMS.Security" >
+    </instanceMap>
+    <instanceMap interface="Indigox.CMS.Security.Interfaces.IMutableAcl,Indigox.CMS.Security" instance="Indigox.CMS.Security.Acl,Indigox.CMS.Security" >
+    </instanceMap>    
+    <instanceMap interface="Indigox.CMS.Security.Interfaces.IAce,Indigox.CMS.Security" instance="Indigox.CMS.Security.Ace,Indigox.CMS.Security" >
+    </instanceMap>
+</config>

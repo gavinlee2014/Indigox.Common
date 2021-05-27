@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E8B5AAE0-3A88-4E7E-8126-AB1EF3A79A1E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Indigox.Common.EventBus.Tests</RootNamespace>
+    <AssemblyName>Indigox.Common.EventBus.Tests</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\References\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\TestListener.cs" />
+    <Compile Include="Configuration\TestObject.cs" />
+    <Compile Include="Configuration\TestStartEvent.cs" />
+    <Compile Include="Configuration\XmlEventsConfiguratorTest.cs" />
+    <Compile Include="EventBus\ClockSample\Clock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventBus\ClockSample\ClockAlarmEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventBus\ClockSample\Counter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventBus\ClockSample\Sleeper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventBus\EventRegisterTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventBus\EventTriggerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Config\events.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Sources\Indigox.Common.Configuration\Indigox.Common.Configuration.csproj">
+      <Project>{ED65FE80-F351-4CFA-99FB-CA52A4C2E15F}</Project>
+      <Name>Indigox.Common.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sources\Indigox.Common.EventBus\Indigox.Common.EventBus.csproj">
+      <Project>{6E07097E-2F76-437E-A8F9-356ACBCC46EA}</Project>
+      <Name>Indigox.Common.EventBus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\..\Build\configurations.proj" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

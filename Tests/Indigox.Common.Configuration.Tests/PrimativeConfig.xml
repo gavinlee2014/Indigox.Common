@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <ext intVal="2147483647"
+       shortVal="32767"
+       longVal="9223372036854775807"
+       boolVal="true"
+       doubleVal="1.7976931348623157E+308"
+       floatVal="3.40282347E+38"
+       byteVal="255"
+       bytesVal="ESIz"
+       dateTimeVal="2011-05-20T12:07:09.29375+08:00"
+       guidVal="ea9e6521-64f6-40f9-b1d5-74fbe1a2346b"
+       stringVal="hello,world!"
+       charVal="99"
+       enumStateVal="Middle" />
+</config>

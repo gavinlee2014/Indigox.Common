@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D1C1153D-10A9-49B0-8DE8-A99F5DFE1902}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Indigox.Common.Utilities.Tests</RootNamespace>
+    <AssemblyName>Indigox.Common.Utilities.Tests</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\References\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CollectionUtilTest.cs" />
+    <Compile Include="DESCryptTest.cs" />
+    <Compile Include="EncodeUtilTest.cs" />
+    <Compile Include="EnumUtilTest.cs" />
+    <Compile Include="ReflectUtilTests\CreateInstanceTest.cs" />
+    <Compile Include="ReflectUtilTests\BaseTest.cs" />
+    <Compile Include="ReflectUtilTests\ReflectMethodTest.cs" />
+    <Compile Include="ReflectUtilTests\ReflectPropertyTest.cs" />
+    <Compile Include="ReflectUtilTests\ReflectTypeTest.cs" />
+    <Compile Include="ReflectUtilTests\InvokeMethodTest.cs" />
+    <Compile Include="RSACryptTest.cs" />
+    <Compile Include="StringUtilTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrlUtilTest.cs" />
+    <Compile Include="XmlUtilTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Sources\Indigox.Common.Serialization\Indigox.Common.Serialization.csproj">
+      <Project>{51E3A175-A6DE-4BA8-BFD1-49479A8E4ADA}</Project>
+      <Name>Indigox.Common.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sources\Indigox.Common.Utilities\Indigox.Common.Utilities.csproj">
+      <Project>{67643708-C649-4A9C-B360-F3B9F005FA15}</Project>
+      <Name>Indigox.Common.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Indigox.Common.Utilities.Tests.Assembly\Indigox.Common.Utilities.Tests.Assembly.csproj">
+      <Project>{7267E213-3162-4999-96DA-8FBCA6700B57}</Project>
+      <Name>Indigox.Common.Utilities.Tests.Assembly</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\..\Build\configurations.proj" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
