@@ -108,6 +108,42 @@ namespace Indigox.Common.ExchangeManager
             executor.Execute();
         }
 
+        public void HideMailBox(string account)
+        {
+            PSExecutor executor = new PSExecutor()
+            {
+                Script = "Set-AdServerSettings -ViewEntireForest $true;  if (( Get-Mailbox -Identity '" + account + "' -ErrorAction SilentlyContinue )) {Set-Mailbox -Identity '" + account + "' -HiddenFromAddressListsEnabled $true}"
+            };
+            executor.Execute();
+        }
+
+        public void ShowMailBox(string account)
+        {
+            PSExecutor executor = new PSExecutor()
+            {
+                Script = "Set-AdServerSettings -ViewEntireForest $true;  if (( Get-Mailbox -Identity '" + account + "' -ErrorAction SilentlyContinue )) {Set-Mailbox -Identity '" + account + "' -HiddenFromAddressListsEnabled $false}"
+            };
+            executor.Execute();
+        }
+
+        public void LimitMailBox(string account)
+        {
+            PSExecutor executor = new PSExecutor()
+            {
+                Script = "Set-AdServerSettings -ViewEntireForest $true;  if (( Get-Mailbox -Identity '" + account + "' -ErrorAction SilentlyContinue )) {Set-Mailbox -Identity '" + account + "' -MaxSendSize 1kb -MaxReceiveSize 1kb}"
+            };
+            executor.Execute();
+        }
+
+        public void UnlimitMailBox(string account)
+        {
+            PSExecutor executor = new PSExecutor()
+            {
+                Script = "Set-AdServerSettings -ViewEntireForest $true;  if (( Get-Mailbox -Identity '" + account + "' -ErrorAction SilentlyContinue )) {Set-Mailbox -Identity '" + account + "' -MaxSendSize Unlimited -MaxReceiveSize Unlimited}"
+            };
+            executor.Execute();
+        }
+
         public AddressList GetAddressList(string name)
         {
             AddressList addressList = null;

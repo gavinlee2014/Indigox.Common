@@ -2,3 +2,5 @@ Build/log.txt
 Build/.svn/
 outputs/
 Sources/.vs/
+Sources/Indigox.Common.ExchangeManager.Console.Test/obj/
+WebApp/bin/
