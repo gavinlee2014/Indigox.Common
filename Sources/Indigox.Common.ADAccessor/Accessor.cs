@@ -11,6 +11,12 @@ using Indigox.Common.Logging;
 
 namespace Indigox.Common.ADAccessor
 {
+    enum PasswordStrategy
+    {
+        DEFAULT,
+        MOBILE,
+        IDCARD,
+    }
     public class Accessor
     {
         private const string STR_ADServer = "ADServer";
@@ -20,6 +26,8 @@ namespace Indigox.Common.ADAccessor
         private const string STR_ADUsername = "ADUsername";
         private const string STR_ADPassword = "ADPassword";
         private const string STR_ADDefaultUserPassword = "ADDefaultUserPassword";
+        private const string STR_ADDefaultUserPasswordPrefix = "ADDefaultUserPasswordPrefix";
+        private const string STR_ADPasswordStrategy = "ADPasswordStrategy";
 
         /// <summary>
         /// ADServer 服务器名称，为空时自动选择连接到当前域的域控服务器，其它例如： 
@@ -52,6 +60,10 @@ namespace Indigox.Common.ADAccessor
 
         private static string ADDefaultUserPassword;
 
+        private static string ADDefaultUserPasswordPrefix;
+
+        private static PasswordStrategy ADPasswordStrategy = PasswordStrategy.DEFAULT;
+
         private static ADServerStatus status = ADServerStatus.Unknow;
         private static DateTime lastTryTime = DateTime.MinValue;
         private static readonly int minTryInterval = 5;
@@ -65,6 +77,27 @@ namespace Indigox.Common.ADAccessor
             ADUsername = ConfigurationManager.AppSettings[STR_ADUsername];
             ADPassword = ConfigurationManager.AppSettings[STR_ADPassword];
             ADDefaultUserPassword = ConfigurationManager.AppSettings[STR_ADDefaultUserPassword];
+            ADDefaultUserPasswordPrefix = ConfigurationManager.AppSettings[STR_ADDefaultUserPasswordPrefix];
+            if (String.IsNullOrEmpty(ADDefaultUserPasswordPrefix))
+            {
+                ADDefaultUserPasswordPrefix = "Indigox@";
+            }
+            string pwdStrategy = ConfigurationManager.AppSettings[STR_ADPasswordStrategy];
+            switch (pwdStrategy)
+            {
+                case "DEFAULT":
+                    ADPasswordStrategy = PasswordStrategy.DEFAULT;
+                    break;
+                case "MOBILE":
+                    ADPasswordStrategy = PasswordStrategy.MOBILE;
+                    break;
+                case "IDCARD":
+                    ADPasswordStrategy = PasswordStrategy.IDCARD;
+                    break;
+                default:
+                    ADPasswordStrategy = PasswordStrategy.DEFAULT;
+                    break;
+            }
         }
 
 
@@ -425,7 +458,7 @@ namespace Indigox.Common.ADAccessor
             return root;
         }
 
-        
+
         public static string GetLeaveOU()
         {
 
@@ -434,7 +467,7 @@ namespace Indigox.Common.ADAccessor
              * 修改人：曾勇
              * 修改时间：2018-11-12
              **/
-            
+
             ConnectServer();
             DirectoryEntry leaveOU = null;
             try
@@ -442,7 +475,7 @@ namespace Indigox.Common.ADAccessor
                 leaveOU = GetDirectoryEntry(BuildPath(ADServer, ADLeaveDN));
                 return leaveOU.Guid.ToString();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Log.Error("Can't find LeaveOU by DN :" + ADLeaveDN);
             }
@@ -755,11 +788,42 @@ namespace Indigox.Common.ADAccessor
             DirectoryEntry newde = container.Children.Add("CN=" + user.Name, "user");
             SetUserOrganization(ref newde);
             CreateAllProperties(user, newde);
-            newde.Invoke("SetPassword", new Object[] { ADDefaultUserPassword });
+            string pwd;
+            switch (ADPasswordStrategy)
+            {
+                case PasswordStrategy.DEFAULT:
+                    pwd = ADDefaultUserPassword;
+                    break;
+                case PasswordStrategy.MOBILE:
+                    if (!String.IsNullOrEmpty(user.Mobile))
+                    {
+                        pwd = ADDefaultUserPasswordPrefix + user.Mobile;
+                    }
+                    else
+                    {
+                        pwd = ADDefaultUserPassword;
+                    }
+                    break;
+                case PasswordStrategy.IDCARD:
+                    if ((!String.IsNullOrEmpty(user.IdCard)) && (user.IdCard.Length >= 6))
+                    {
+                        pwd = ADDefaultUserPasswordPrefix + user.IdCard.Substring(user.IdCard.Length - 6, 6);
+                    }
+                    else
+                    {
+                        pwd = ADDefaultUserPassword;
+                    }
+                    break;
+                default:
+                    pwd = ADDefaultUserPassword;
+                    break;
+            }
+
+            newde.Invoke("SetPassword", new Object[] { pwd });
 
             GatherAllProperties(user, newde);
             //AddToGroup(user, org);
-            Log.Debug(String.Format("CreateUser {0},{1},{2} end", user.Name, user.DisplayName, user.Account));
+            Log.Debug(String.Format("CreateUser {0},{1},{2},{3},{4},{5} end", user.Name, user.DisplayName, user.Account, user.IdCard, pwd, ADPasswordStrategy + ""));
             return user;
         }
 
@@ -848,7 +912,7 @@ namespace Indigox.Common.ADAccessor
                 if (child.SchemaClassName == "user")
                 {
                     SetUserOrganization(ref child);
-                    child.CommitChanges();                    
+                    child.CommitChanges();
                 }
             }
 
@@ -880,7 +944,7 @@ namespace Indigox.Common.ADAccessor
         {
             DirectoryEntry de = GetByGuid(new Guid(ouID));
             SearchResultCollection users = Find(de, "(objectClass=user)");
-            if(users.Count > 0)
+            if (users.Count > 0)
             {
                 throw new Exception("OU删除失败，OU下还有User，OU：" + de.Name);
             }
@@ -1090,7 +1154,7 @@ namespace Indigox.Common.ADAccessor
                 string name = check.Name;
                 return true;
             }
-            catch (COMException e)
+            catch (COMException)
             {
                 return false;
             }

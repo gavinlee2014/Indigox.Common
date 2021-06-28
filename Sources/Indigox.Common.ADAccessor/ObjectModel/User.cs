@@ -14,5 +14,7 @@ namespace Indigox.Common.ADAccessor.ObjectModel
         public string GivenName { get; set; }
         public string Description { get; set; }
         public string Portrait { get; set; }
+
+        public string IdCard { get; set; }
     }
 }
